@@ -11,7 +11,7 @@ plugins {
 }
 
 group 'com.nilsenlabs.flavormatrix'
-version '0.5.0'
+version '0.5.1'
 
 patchPluginXml {
     changeNotes """
@@ -22,17 +22,14 @@ patchPluginXml {
 }
 
 intellij {
-    version '201.8743.12'  // Same IntelliJ IDEA version as target 4.1 Android Studio
-    type 'IC'              // Use IntelliJ IDEA CE because it's the basis of the IntelliJ Platform   
-    // Require the Android plugin, Gradle will match the plugin version to intellij.version 
+    version '193.6911.18'  //  IntelliJ IDEA version used in Android Studio 4.0.1
+    type 'IC'              // Community edition
     plugins 'android'
     updateSinceUntilBuild false
-
 }
 
 runIde {
     // Absolute path to installed target 4.1 Android Studio to use as IDE Development Instance
-    // The "Contents" directory is macOS specific.
     ideDirectory 'c:/Program Files/Android/Android Studio 4.1 RC3'
     //ideDirectory 'C:/Program Files/Android/Android Studio'
 }
