@@ -2,6 +2,7 @@ package com.nilsenlabs.flavormatrix.actions
 
 import com.android.tools.idea.gradle.project.model.AndroidModuleModel
 import com.android.tools.idea.gradle.variant.view.BuildVariantUpdater
+import com.android.tools.idea.gradle.variant.view.update
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.module.ModuleManager
@@ -25,7 +26,7 @@ class SelectBuildVariantMatrixAction : AnAction() {
             // OK selected => Post variant selection back to Android Studio
             for (module in androidModules) {
                 val variant = dimensions.getSelectedVariantFor(module.moduleName)
-                if (variant != null) updater.updateSelectedBuildVariant(project, module.moduleName, variant)
+                if (variant != null) updater.update(project, module.moduleName, variant)
             }
         }
     }
