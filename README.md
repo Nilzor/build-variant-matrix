@@ -1,4 +1,4 @@
-# Build variant matrix selector
+# Build Variant Matrix Selector
 
 A plugin for Android Studio making it easier to select variants / flavors
 
@@ -27,9 +27,18 @@ flavors per dimension, radio buttons can do with A + B + C
 
 ## Installation
 
+Requirement: Android Studio 4.0 or newer.
+
+- Search for plugin <TBA> in Android Studio (Not yet published as of 13/12-2020, see releasees for manual file installation) 
+
 ## Usage
 
 Map a key to the action "Select Build Variant as Matrix" and start using it
+
+## Known limitations
+
+- Not currently supporting modules that have incomplete dimension configuration. 
+   If you have flavor A, B & C for dimension X, you need to have flavor A, B & C in all modules. 
 
 ## Acknowledgements
 

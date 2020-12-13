@@ -11,12 +11,12 @@ plugins {
 }
 
 group 'com.nilsenlabs.flavormatrix'
-version '0.5.1'
+version '0.5.3'
 
 patchPluginXml {
     changeNotes """
     <ul>
-      <li>0.5 Beta version of the Flavor Matrix plugin</li>
+      <li>0.5.3 Beta version of the Build Variant Matrix Selector plugin</li>
     </ul>
     """
 }

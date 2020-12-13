@@ -16,13 +16,13 @@
 <idea-plugin>
     <id>com.nilsenlabs.flavormatrix</id>
     <name>Build Variant Matrix Selector</name>
-    <vendor url="https://github.com/Nilzor/flavor-matrix">Frode Nilsen</vendor>
-    <idea-version since-build="201"/>
+    <vendor url="https://github.com/Nilzor/build-variant-matrix">Frode Nilsen</vendor>
+    <idea-version since-build="193"/>
 
     <description><![CDATA[
     Select variant by selecting flavors in a matrix instead of drop down lists.
 
-    Github: https://github.com/Nilzor/flavor-matrix
+    Github: https://github.com/Nilzor/build-variant-matrix
     ]]></description>
 
     <depends>org.jetbrains.android</depends>
@@ -31,7 +31,7 @@
     <actions>
         <action id="SelectBuildVariantMatrixAction"
                 class="com.nilsenlabs.flavormatrix.actions.SelectBuildVariantMatrixAction"
-                text="Select Build Variant as Matrix">
+                text="Select Build Variant by Matrix">
             <add-to-group group-id="GradleProjectStructureActions"
                           anchor="after"
                           relative-to-action="SelectBuildVariant" />
