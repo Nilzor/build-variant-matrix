@@ -81,20 +81,24 @@ class VariantSelectorDialog(
                 }
             }
         }
-        populateVariantResult(moduleListTextArea)
+        val allFlavorsSelected = populateVariantResult(moduleListTextArea)
+        enableButtons(allFlavorsSelected)
         container.add(moduleListTextArea)
 
         selectorContainer.doLayout()
         return container
     }
 
-    private fun populateVariantResult(variantResultList: JTextArea) {
+    private fun populateVariantResult(variantResultList: JTextArea): Boolean {
         var text = ""
+        var anyNull = false
         for (module in androidModules) {
             val variantName = dimensions.getSelectedVariantFor(module.moduleName)
+            if (variantName == null) anyNull = true
             text += "${module.moduleName}: $variantName\n"
         }
         variantResultList.text = text
+        return !anyNull
     }
 
     /**
@@ -104,6 +108,11 @@ class VariantSelectorDialog(
         if (button.isSelected) {
             dimension.selectUniqueFlavor(button.text)
         }
-        populateVariantResult(variantResultList)
+        val allFlavorsSelected = populateVariantResult(variantResultList)
+        enableButtons(allFlavorsSelected)
+    }
+
+    fun enableButtons(allFlavorsSelected: Boolean) {
+        isOKActionEnabled = allFlavorsSelected
     }
 }
