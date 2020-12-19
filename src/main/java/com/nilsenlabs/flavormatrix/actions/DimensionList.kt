@@ -50,13 +50,16 @@ class DimensionList {
     /** Generates a selectable variant string for the given module based on the selected items */
     fun getSelectedVariantFor(moduleName: String): String? {
         val dimensionList: MutableList<Dimension> = moduleOrderedDimensionMap[moduleName] ?: return null
-        val variantString = dimensionList.joinToString("") {
-            it.flavors
+        try {
+            val variantString = dimensionList.joinToString("") {
+                it.flavors
                     .first { it.isSelected }
-                    .title.capitalize()
+                    .title.capitalize() // Lowercase first char
+            }
+            return variantString[0].toLowerCase().toString() + variantString.subSequence(1, variantString.length)
+        } catch (ex: NoSuchElementException) {
+            return null
         }
-        // Lowercase first char
-        return variantString[0].toLowerCase().toString() + variantString.subSequence(1, variantString.length)
     }
 
     /** Make a map of Module => Ordered List Of Dimensions, where order
@@ -87,6 +90,15 @@ class DimensionList {
         return dimensions
             .flatMap { it.flavors }
             .firstOrNull { it.title == name }
+    }
+
+    fun deselectDuplicates() {
+        for (dimension in dimensions) {
+            val selectedFlavors = dimension.flavors.count { it.isSelected }
+            if (selectedFlavors > 1) {
+                dimension.flavors.forEach { it.isSelected = false }
+            }
+        }
     }
 }
 

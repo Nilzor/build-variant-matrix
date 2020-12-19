@@ -11,6 +11,7 @@ object AndroidModuleHelper {
         addBuildTypes(modules, dimensions)
         dimensions.createOrderedDimensionMaps(androidModules)
         dimensions.selectFrom(androidModules)
+        dimensions.deselectDuplicates()
         return dimensions
     }
 
