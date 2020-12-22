@@ -19,13 +19,27 @@
     <vendor url="https://github.com/Nilzor/build-variant-matrix">Frode Nilsen</vendor>
     <idea-version since-build="193"/>
 
-    <description><![CDATA[
-    Select variant by selecting flavors in a matrix instead of drop down lists.
+    <description><![CDATA[<p>Select variant by selecting flavors in a matrix instead of through the drop down lists provdided by IntelliJ/Android Studio
+in the "Build Variants" view. In addition this plugin selects variants for all modules at the same time, even
+when there are multiple leaf modules. This results in a very fast and intuitive way of switching variants
+for all modules.</p>
+<br/>
+<p>
+Usage: Bind a key to the action named "Select Build Variant by Matrix" and press that combination after loading an Android project.
+You will then be presented with the dialog to select the variant.
+</p>
+<br/>
+<p>
+<img src="https://raw.githubusercontent.com/Nilzor/build-variant-matrix/master/meta/flavor-matrix.gif"/>
+<br/>
 
-    Github: https://github.com/Nilzor/build-variant-matrix
-    ]]></description>
+Read more and contribute at <a href="https://github.com/Nilzor/build-variant-matrix">the github repo page</a>
+</p>
+<br/>
+This is an open source project licensed under the Apache License v2.0.]]></description>
 
     <depends>org.jetbrains.android</depends>
+    <depends>com.intellij.modules.androidstudio</depends>
 
     <actions>
         <action id="SelectBuildVariantMatrixAction"
