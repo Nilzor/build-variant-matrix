@@ -27,9 +27,18 @@ flavors per dimension, radio buttons can do with A + B + C
 
 ## Installation
 
-Requirement: Android Studio 4.0 or newer.
+Requirement: Android Studio 4.0 or newer. 
 
-- Search for plugin <TBA> in Android Studio (Not yet published as of 13/12-2020, see releasees for manual file installation) 
+### Option 1
+
+- [Download manually](https://plugins.jetbrains.com/plugin/15632-build-variant-matrix-selector) from the Jetbrains Repository Web Page and "install from disk" from 
+
+### Option 2
+
+- Add the "beta" repository to your Android Studio Repository list. Url: `https://plugins.jetbrains.com/plugins/beta/list`
+- Search for plugin "Build Variant Matrix Selector" 
+
+![Plugin Repository](meta/plugin-repo.png)
 
 ## Usage
 
