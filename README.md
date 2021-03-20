@@ -29,20 +29,15 @@ flavors per dimension, radio buttons can do with A + B + C
 
 Requirement: Android Studio 4.0 or newer. 
 
-### Option 1
+Go to File - Settings - Plugins, Search for plugin "Build Variant Matrix Selector" 
 
-- [Download manually](https://plugins.jetbrains.com/plugin/15632-build-variant-matrix-selector) from the Jetbrains Repository Web Page and "install from disk" from 
+![image](https://user-images.githubusercontent.com/990654/111862442-aa75bb80-8955-11eb-8e75-35352186242c.png)
 
-### Option 2
-
-- Add the "beta" repository to your Android Studio Repository list. Url: `https://plugins.jetbrains.com/plugins/beta/list`
-- Search for plugin "Build Variant Matrix Selector" 
-
-![Plugin Repository](meta/plugin-repo.png)
+Optionally [download](https://plugins.jetbrains.com/plugin/15632-build-variant-matrix-selector) and install from disk
 
 ## Usage
 
-Map a key to the action "Select Build Variant as Matrix" and start using it
+Go to File - Settings - Keymap - map a key to the action "Select Build Variant by Matrix". Start clicking the button after a proect has loaded, simple as that!
 
 ## Known limitations
 
