@@ -8,9 +8,6 @@ buildscript {
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.5.10'
     id 'org.jetbrains.intellij' version '1.0'
-
-    //id 'org.jetbrains.kotlin.jvm' version '1.3.72'
-    //id 'org.jetbrains.intellij' version '0.4.21'
 }
 
 group 'com.nilsenlabs.flavormatrix'
@@ -37,14 +34,12 @@ Build #AI-202.7660.26.42.7351085, built on May 10, 2021
 */
 runIde {
     // Absolute path to installed target 4.1 Android Studio to use as IDE Development Instance
-    //ideDirectory 'c:/Program Files/Android/Android Studio 4.1 RC3'
-    //ideDirectory 'C:/Program Files/Android/Android Studio'
+    //def dir = 'c:/Program Files/Android/Android Studio 4.1 RC3'
+    //def dir = 'C:/Program Files/Android/Android Studio'
+    def dir = 'C:/Programfiler/android/Android Studio'
 
-   // new
-   // def dir = org.gradle.api.file.Directory.dir('C:/Programfiler/android/Android Studio')
-    //ideDir.set(dir) // Work computer)
-    def dir = project.getLayout().getProjectDirectory().dir('C:/Programfiler/android/Android Studio')
-    ideDir.set(dir)
+    def dirObj = project.getLayout().getProjectDirectory().dir(dir)
+    ideDir.set(dirObj)
 }
 
 repositories {
