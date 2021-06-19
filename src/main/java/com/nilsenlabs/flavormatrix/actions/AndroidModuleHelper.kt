@@ -34,8 +34,10 @@ object AndroidModuleHelper {
             val flavors = module.productFlavors.toList()
             for (flavorStr in flavors) {
                 val flavor = module.findProductFlavor(flavorStr)?.productFlavor ?: continue
-                val flavorsForDimension = dimensionList.getOrCreateDimension(flavor.dimension)
-                flavorsForDimension.addUniqueVariant(flavor.name)
+                flavor.dimension?.let { dim ->
+                    val flavorsForDimension = dimensionList.getOrCreateDimension(dim)
+                    flavorsForDimension.addUniqueVariant(flavor.name)
+                }
             }
         }
         return dimensionList
@@ -55,7 +57,9 @@ object AndroidModuleHelper {
 
 
 val Module.variantNames: Collection<String?>
-    get() = NdkModuleModel.get(this)?.ndkVariantNames ?: AndroidModuleModel.get(this)?.variantNames ?: emptyList()
+    // Note: NDK part is untested
+    get() = NdkModuleModel.get(this)?.ndkModel?.allVariantAbis?.stream()?.map { it.displayName }?.toList()
+        ?: AndroidModuleModel.get(this)?.variantNames ?: emptyList()
 
 val Module.variantItems: ModuleBuildVariant
     get() = ModuleBuildVariant(name, variantNames.asSequence().filterNotNull().sorted().toList())

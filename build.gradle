@@ -17,9 +17,10 @@ group 'com.nilsenlabs.flavormatrix'
 version '0.5.6'
 
 intellij {
-    version = '202.7660.26'  // IntelliJ IDEA version used in Android Studio 4.2.1
-    type = 'IC'                // Community edition
+    // version = '202.7660.26'  // IntelliJ IDEA version used in Android Studio 4.2.1
+    //type = 'IC'                // Community edition
     plugins = ['android']
+    localPath = 'C:/Programfiler/android/Android Studio'
     //updateSinceUntilBuild false
 }
 
