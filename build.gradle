@@ -11,7 +11,7 @@ plugins {
 }
 
 group 'com.nilsenlabs.flavormatrix'
-version '0.5.6'
+version '0.6.0'
 
 intellij {
     // version = '202.7660.26'  // IntelliJ IDEA version used in Android Studio 4.2.1
@@ -24,7 +24,7 @@ intellij {
 patchPluginXml {
     changeNotes = """
     <ul>
-      <li>0.5.6 Improved release notes</li>
+      <li>0.6.0 Support for Android 2.2</li>
     </ul>
     """
 }
@@ -36,7 +36,7 @@ runIde {
     // Absolute path to installed target 4.1 Android Studio to use as IDE Development Instance
     //def dir = 'c:/Program Files/Android/Android Studio 4.1 RC3'
     //def dir = 'C:/Program Files/Android/Android Studio'
-    def dir = 'C:/Programfiler/android/Android Studio'
+    def dir = 'C:/Programfiler/android/Android Studio' // Path to AS 4.2.1 on my work computer
 
     def dirObj = project.getLayout().getProjectDirectory().dir(dir)
     ideDir.set(dirObj)
@@ -54,5 +54,5 @@ dependencies {
 }
 
 //publishPlugin {
- //   token project.properties['jetbrains.publish.token']
+//   token project.properties['jetbrains.publish.token']
 //}
