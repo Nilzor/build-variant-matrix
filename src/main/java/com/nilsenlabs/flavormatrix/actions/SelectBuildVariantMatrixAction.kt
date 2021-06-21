@@ -19,7 +19,8 @@ class SelectBuildVariantMatrixAction : AnAction() {
             .filter { it?.moduleName != null }
             .map { it!! }
 
-        val dimensions = AndroidModuleHelper.createDimensionTable(androidModules, moduleManager.modules)
+        val moduleHelper: AndroidModuleHelper = ModuleHelperFactory.create()
+        val dimensions = moduleHelper.createDimensionTable(androidModules, moduleManager.modules)
 
         val dialog = VariantSelectorDialog(dimensions, androidModules, project)
         if (dialog.showAndGet()) {
@@ -29,5 +30,9 @@ class SelectBuildVariantMatrixAction : AnAction() {
                 if (variant != null) updater.update(project, module.moduleName, variant)
             }
         }
+    }
+
+    private fun resolveModuleHelper(): AndroidModuleHelper {
+        return LegacyAndroidModuleHelper()
     }
 }
