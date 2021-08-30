@@ -1,7 +1,8 @@
 package com.nilsenlabs.flavormatrix.actions
 
+import com.android.builder.model.ProductFlavorContainer
+import com.android.tools.idea.gradle.model.IdeProductFlavorContainer
 import com.android.tools.idea.gradle.project.model.AndroidModuleModel
-import com.android.tools.idea.gradle.project.model.NdkModuleModel
 import com.intellij.openapi.module.Module
 import kotlin.streams.toList
 
@@ -33,7 +34,8 @@ object AndroidModuleHelper {
         for (module in modules) {
             val flavors = module.productFlavors.toList()
             for (flavorStr in flavors) {
-                val flavor = module.findProductFlavor(flavorStr)?.productFlavor ?: continue
+                val flavorObj: IdeProductFlavorContainer? = module.findProductFlavor(flavorStr)
+                val flavor = flavorObj?.productFlavor ?: continue
                 flavor.dimension?.let { dim ->
                     val flavorsForDimension = dimensionList.getOrCreateDimension(dim)
                     flavorsForDimension.addUniqueVariant(flavor.name)
@@ -58,8 +60,8 @@ object AndroidModuleHelper {
 
 val Module.variantNames: Collection<String?>
     // Note: NDK part is untested
-    get() = NdkModuleModel.get(this)?.ndkModel?.allVariantAbis?.stream()?.map { it.displayName }?.toList()
-        ?: AndroidModuleModel.get(this)?.variantNames ?: emptyList()
+    get() = // NdkModuleModel.get(this)?.ndkModel?.allVariantAbis?.stream()?.map { it.displayName }?.toList() ?:
+        AndroidModuleModel.get(this)?.variantNames ?: emptyList()
 
 val Module.variantItems: ModuleBuildVariant
     get() = ModuleBuildVariant(name, variantNames.asSequence().filterNotNull().sorted().toList())

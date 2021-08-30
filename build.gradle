@@ -2,6 +2,7 @@ buildscript {
     repositories {
         mavenCentral()
         jcenter()
+        maven { url 'https://www.jetbrains.com/intellij-repository/releases' }
     }
 }
 
@@ -11,41 +12,52 @@ plugins {
 }
 
 group 'com.nilsenlabs.flavormatrix'
-version '0.6.0'
+version '0.7.0'
+
+// Any developer must change this to his/her installation folder
+// of Android Studio of the targetIdeVersion for which to build for
+def localStudioPath = 'C:/Programfiler/android/Android Studio'
+// Below: Arctic Fox 2020.3.1. ALWAYS UPDATE PLUGIN.XML AS WELL
+def targetIdeVersion = "203.7717.56"
+
+// The other machine: 'c:/Program Files/Android/Android Studio 4.1 RC3'
 
 intellij {
-    // version = '202.7660.26'  // IntelliJ IDEA version used in Android Studio 4.2.1
-    //type = 'IC'                // Community edition
+    // Uncomment the two lines below and remove "localPath" if you want to build for a different version than the one locally installed
+    // version = targetIdeVersion
+    // type = 'IC'                // Community edition
+
     plugins = ['android']
-    localPath = 'C:/Programfiler/android/Android Studio'
-    //updateSinceUntilBuild false
+    localPath = localStudioPath
+
+    // since-build and until-build is configured in plugin.xml.
+    // Update whenever rebuilt for later IDEA version.
+    updateSinceUntilBuild = false
 }
 
 patchPluginXml {
     changeNotes = """
     <ul>
-      <li>0.6.0 Support for Android 2.2</li>
+      <li>0.7.0 Support for Android studio Arctic Fox 2020.3.1</li>
+      <li>0.6.0 Support for Android 4.2</li>
     </ul>
     """
 }
-/*
-Android Studio 4.2.1
-Build #AI-202.7660.26.42.7351085, built on May 10, 2021
-*/
-runIde {
-    // Absolute path to installed target 4.1 Android Studio to use as IDE Development Instance
-    //def dir = 'c:/Program Files/Android/Android Studio 4.1 RC3'
-    //def dir = 'C:/Program Files/Android/Android Studio'
-    def dir = 'C:/Programfiler/android/Android Studio' // Path to AS 4.2.1 on my work computer
 
-    def dirObj = project.getLayout().getProjectDirectory().dir(dir)
+runIde {
+    def dirObj = project.getLayout().getProjectDirectory().dir(localStudioPath)
     ideDir.set(dirObj)
+}
+
+instrumentCode {
+    compilerVersion = targetIdeVersion
 }
 
 repositories {
     mavenLocal()
     mavenCentral()
     jcenter()
+    maven { url 'https://www.jetbrains.com/intellij-repository/releases' }
 }
 
 dependencies {
