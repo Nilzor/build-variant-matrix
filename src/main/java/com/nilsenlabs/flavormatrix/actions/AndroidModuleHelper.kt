@@ -1,13 +1,12 @@
 package com.nilsenlabs.flavormatrix.actions
 
-import com.android.builder.model.ProductFlavorContainer
 import com.android.tools.idea.gradle.model.IdeProductFlavorContainer
-import com.android.tools.idea.gradle.project.model.AndroidModuleModel
+import com.android.tools.idea.gradle.project.model.GradleAndroidModel
 import com.intellij.openapi.module.Module
 import kotlin.streams.toList
 
 object AndroidModuleHelper {
-    fun createDimensionTable(androidModules: List<AndroidModuleModel>, modules: Array<Module> ): DimensionList {
+    fun createDimensionTable(androidModules: List<GradleAndroidModel>, modules: Array<Module> ): DimensionList {
         val dimensions = createMergedDimensionList(androidModules)
         addBuildTypes(modules, dimensions)
         dimensions.createOrderedDimensionMaps(androidModules)
@@ -29,7 +28,7 @@ object AndroidModuleHelper {
     /**
      * Fills the list with a merged set of dimensions for all modules
      */
-    private fun createMergedDimensionList(modules: List<AndroidModuleModel>): DimensionList {
+    private fun createMergedDimensionList(modules: List<GradleAndroidModel>): DimensionList {
         val dimensionList = DimensionList()
         for (module in modules) {
             val flavors = module.productFlavors.toList()
@@ -49,7 +48,7 @@ object AndroidModuleHelper {
         val buildTypes = mutableSetOf<String>()
         for(module in modules) {
 
-            val amod = AndroidModuleModel.get(module)
+            val amod = GradleAndroidModel.get(module)
             System.out.println( "Selected variant for ${module.name}: ${amod?.selectedVariant?.displayName} -- ${amod?.selectedVariant?.buildType} -- ${amod?.selectedVariant?.productFlavors?.joinToString("*")}")
             buildTypes.addAll(amod?.buildTypeNames ?: emptyList())
         }
@@ -61,7 +60,7 @@ object AndroidModuleHelper {
 val Module.variantNames: Collection<String?>
     // Note: NDK part is untested
     get() = // NdkModuleModel.get(this)?.ndkModel?.allVariantAbis?.stream()?.map { it.displayName }?.toList() ?:
-        AndroidModuleModel.get(this)?.variantNames ?: emptyList()
+        GradleAndroidModel.get(this)?.variantNames ?: emptyList()
 
 val Module.variantItems: ModuleBuildVariant
     get() = ModuleBuildVariant(name, variantNames.asSequence().filterNotNull().sorted().toList())

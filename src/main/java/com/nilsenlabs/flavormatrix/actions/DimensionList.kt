@@ -1,6 +1,7 @@
 package com.nilsenlabs.flavormatrix.actions
 
 import com.android.tools.idea.gradle.project.model.AndroidModuleModel
+import com.android.tools.idea.gradle.project.model.GradleAndroidModel
 
 class DimensionList {
     companion object {
@@ -65,7 +66,7 @@ class DimensionList {
     /** Make a map of Module => Ordered List Of Dimensions, where order
      * matches what Android Studio lists when string concatenating
      */
-    fun createOrderedDimensionMaps(modules: List<AndroidModuleModel>) {
+    fun createOrderedDimensionMaps(modules: List<GradleAndroidModel>) {
         for (module in modules) {
             module.variantNames.firstOrNull()?.let { firstVariant ->
                 // The (first) named variant is always sorted the same way we need to sort the output
