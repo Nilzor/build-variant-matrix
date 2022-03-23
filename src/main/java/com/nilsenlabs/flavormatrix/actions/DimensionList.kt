@@ -1,6 +1,5 @@
 package com.nilsenlabs.flavormatrix.actions
 
-import com.android.tools.idea.gradle.project.model.AndroidModuleModel
 import com.android.tools.idea.gradle.project.model.GradleAndroidModel
 
 class DimensionList {
@@ -36,7 +35,7 @@ class DimensionList {
         return dimensions.firstOrNull { it.flavors.contains(flavorSelectable) }
     }
 
-    fun selectFrom(androidModules: List<AndroidModuleModel>) {
+    fun selectFrom(androidModules: List<GradleAndroidModel>) {
         for (module in androidModules) {
             for (selectedFlavor in module.selectedVariant.productFlavors) {
                 getFlavorByName(selectedFlavor)?.isSelected = true

@@ -12,13 +12,16 @@ plugins {
 }
 
 group 'com.nilsenlabs.flavormatrix'
-version '0.7.0'
+version '0.7.2'
 
 // Any developer must change this to his/her installation folder
 // of Android Studio of the targetIdeVersion for which to build for
-def localStudioPath = 'C:/Programfiler/android/Android Studio'
+//def localStudioPath = 'C:/Programfiler/android/Android Studio'
+def localStudioPath = 'C:/Users/Arsylk/AppData/Local/JetBrains/Toolbox/apps/AndroidStudio/ch-1/213.6777.52.2113.8305692/'
 // Below: Arctic Fox 2020.3.1. ALWAYS UPDATE PLUGIN.XML AS WELL
-def targetIdeVersion = "203.7717.56"
+def targetIdeVersion = "213.6777.52"
+//212.5712.43.2112.8184640
+//213.6777.52.2113.8305692
 
 // The other machine: 'c:/Program Files/Android/Android Studio 4.1 RC3'
 
