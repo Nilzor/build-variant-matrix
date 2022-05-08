@@ -1,6 +1,6 @@
 package com.nilsenlabs.flavormatrix.actions
 
-import com.android.tools.idea.gradle.project.model.AndroidModuleModel
+import com.android.tools.idea.gradle.project.model.GradleAndroidModel
 import com.android.tools.idea.gradle.variant.view.BuildVariantUpdater
 import com.android.tools.idea.gradle.variant.view.update
 import com.intellij.openapi.actionSystem.AnAction
@@ -15,9 +15,10 @@ class SelectBuildVariantMatrixAction : AnAction() {
         val moduleManager = ModuleManager.getInstance(project)
 
         val androidModules = moduleManager.modules
-            .map { AndroidModuleModel.get(it) }
+            .map { GradleAndroidModel.get(it) }
             .filter { it?.moduleName != null }
             .map { it!! }
+            .distinct()
 
         val dimensions = AndroidModuleHelper.createDimensionTable(androidModules, moduleManager.modules)
 
