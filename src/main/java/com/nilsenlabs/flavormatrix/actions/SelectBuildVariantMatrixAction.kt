@@ -18,6 +18,7 @@ class SelectBuildVariantMatrixAction : AnAction() {
             .map { GradleAndroidModel.get(it) }
             .filter { it?.moduleName != null }
             .map { it!! }
+            .distinct()
 
         val dimensions = AndroidModuleHelper.createDimensionTable(androidModules, moduleManager.modules)
 
