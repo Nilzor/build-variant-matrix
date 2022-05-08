@@ -12,16 +12,14 @@ plugins {
 }
 
 group 'com.nilsenlabs.flavormatrix'
-version '0.7.2'
+version '0.9.93'
 
 // Any developer must change this to his/her installation folder
 // of Android Studio of the targetIdeVersion for which to build for
 //def localStudioPath = 'C:/Programfiler/android/Android Studio'
-def localStudioPath = 'C:/Users/Arsylk/AppData/Local/JetBrains/Toolbox/apps/AndroidStudio/ch-1/213.6777.52.2113.8305692/'
-// Below: Arctic Fox 2020.3.1. ALWAYS UPDATE PLUGIN.XML AS WELL
-def targetIdeVersion = "213.6777.52"
-//212.5712.43.2112.8184640
-//213.6777.52.2113.8305692
+def localStudioPath = 'D:/coding/android-studio-2021.2.1.13'
+// Below: Chipmunk 2021.2.1 RC2. ALWAYS UPDATE PLUGIN.XML AS WELL
+def targetIdeVersion = "212.5712.43"
 
 // The other machine: 'c:/Program Files/Android/Android Studio 4.1 RC3'
 
@@ -41,6 +39,7 @@ intellij {
 patchPluginXml {
     changeNotes = """
     <ul>
+      <li>0.9.93 Support for Android Studio Chipmunk (RC2+)</li>
       <li>0.7.0 Support for Android studio Arctic Fox 2020.3.1</li>
       <li>0.6.0 Support for Android 4.2</li>
     </ul>
