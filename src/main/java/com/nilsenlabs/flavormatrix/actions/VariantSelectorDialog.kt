@@ -22,7 +22,7 @@ class VariantSelectorDialog(
     init {
         this.title = "Select variant"
         if (!SystemInfo.isMac) {
-            //setButtonsAlignment(SwingConstants.CENTER)
+            setButtonsAlignment(SwingConstants.CENTER)
         }
         init()
     }
