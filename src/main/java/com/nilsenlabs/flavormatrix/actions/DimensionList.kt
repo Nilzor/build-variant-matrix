@@ -1,6 +1,6 @@
 package com.nilsenlabs.flavormatrix.actions
 
-import com.android.tools.idea.gradle.project.model.AndroidModuleModel
+import com.android.tools.idea.gradle.project.model.GradleAndroidModel
 
 class DimensionList {
     companion object {
@@ -35,7 +35,7 @@ class DimensionList {
         return dimensions.firstOrNull { it.flavors.contains(flavorSelectable) }
     }
 
-    fun selectFrom(androidModules: List<AndroidModuleModel>) {
+    fun selectFrom(androidModules: List<GradleAndroidModel>) {
         for (module in androidModules) {
             for (selectedFlavor in module.selectedVariant.productFlavors) {
                 getFlavorByName(selectedFlavor)?.isSelected = true
@@ -65,7 +65,7 @@ class DimensionList {
     /** Make a map of Module => Ordered List Of Dimensions, where order
      * matches what Android Studio lists when string concatenating
      */
-    fun createOrderedDimensionMaps(modules: List<AndroidModuleModel>) {
+    fun createOrderedDimensionMaps(modules: List<GradleAndroidModel>) {
         for (module in modules) {
             module.variantNames.firstOrNull()?.let { firstVariant ->
                 // The (first) named variant is always sorted the same way we need to sort the output

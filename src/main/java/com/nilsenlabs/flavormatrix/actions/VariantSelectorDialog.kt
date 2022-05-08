@@ -1,6 +1,6 @@
 package com.nilsenlabs.flavormatrix.actions
 
-import com.android.tools.idea.gradle.project.model.AndroidModuleModel
+import com.android.tools.idea.gradle.project.model.GradleAndroidModel
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.ui.DialogWrapper
 import com.intellij.openapi.ui.VerticalFlowLayout
@@ -16,13 +16,13 @@ import javax.swing.border.LineBorder
 
 class VariantSelectorDialog(
         private val dimensions: DimensionList,
-        private val androidModules: List<AndroidModuleModel>,
+        private val androidModules: List<GradleAndroidModel>,
         project: Project
 ) : DialogWrapper(project) {
     init {
         this.title = "Select variant"
         if (!SystemInfo.isMac) {
-            setButtonsAlignment(SwingConstants.CENTER)
+            //setButtonsAlignment(SwingConstants.CENTER)
         }
         init()
     }
