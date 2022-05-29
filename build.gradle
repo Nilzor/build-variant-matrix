@@ -12,7 +12,7 @@ plugins {
 }
 
 group 'com.nilsenlabs.flavormatrix'
-version '0.9.93'
+version '1.0.0'
 
 // Any developer must change this to his/her installation folder
 // of Android Studio of the targetIdeVersion for which to build for
@@ -39,7 +39,7 @@ intellij {
 patchPluginXml {
     changeNotes = """
     <ul>
-      <li>0.9.93 Support for Android Studio Chipmunk (RC2+)</li>
+      <li>1.0.0 Support for Android Studio Chipmunk (RC2+)</li>
       <li>0.7.0 Support for Android studio Arctic Fox 2020.3.1</li>
       <li>0.6.0 Support for Android 4.2</li>
     </ul>
