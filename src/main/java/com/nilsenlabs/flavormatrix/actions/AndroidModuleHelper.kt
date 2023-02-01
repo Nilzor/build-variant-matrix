@@ -1,6 +1,5 @@
 package com.nilsenlabs.flavormatrix.actions
 
-import com.android.tools.idea.gradle.model.IdeProductFlavorContainer
 import com.android.tools.idea.gradle.project.model.GradleAndroidModel
 import com.intellij.openapi.module.Module
 import kotlin.streams.toList
@@ -31,10 +30,9 @@ object AndroidModuleHelper {
     private fun createMergedDimensionList(modules: List<GradleAndroidModel>): DimensionList {
         val dimensionList = DimensionList()
         for (module in modules) {
-            val flavors = module.productFlavors.toList()
-            for (flavorStr in flavors) {
-                val flavorObj: IdeProductFlavorContainer? = module.findProductFlavor(flavorStr)
-                val flavor = flavorObj?.productFlavor ?: continue
+            val flavors = module.androidProject.productFlavors.toList()
+            for (flavorObj in flavors) {
+                val flavor = flavorObj.productFlavor
                 flavor.dimension?.let { dim ->
                     val flavorsForDimension = dimensionList.getOrCreateDimension(dim)
                     flavorsForDimension.addUniqueVariant(flavor.name)
