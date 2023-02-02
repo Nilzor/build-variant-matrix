@@ -12,7 +12,14 @@ plugins {
 }
 
 group 'com.nilsenlabs.flavormatrix'
-version '1.0.91'
+version '1.0.103'
+
+/*
+v101 : FIRST MARKER ;: MAsse NPE
+v102: Original updater: Treffer bare 1 modul, akkurat som min kopi av updater
+v103: OldUpdater
+
+ */
 
 // Any developer must change this to his/her installation folder
 // of Android Studio of the targetIdeVersion for which to build for
