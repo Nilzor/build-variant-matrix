@@ -12,7 +12,7 @@ plugins {
 }
 
 group 'com.nilsenlabs.flavormatrix'
-version '1.0.103'
+version '1.0.104'
 
 
 // Any developer must change this to his/her installation folder
