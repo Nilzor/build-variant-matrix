@@ -12,7 +12,8 @@ plugins {
 }
 
 group 'com.nilsenlabs.flavormatrix'
-version '1.0.91'
+version '1.0.103'
+
 
 // Any developer must change this to his/her installation folder
 // of Android Studio of the targetIdeVersion for which to build for

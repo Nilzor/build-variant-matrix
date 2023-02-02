@@ -1,7 +1,6 @@
 package com.nilsenlabs.flavormatrix.actions
 
 import com.android.tools.idea.gradle.project.model.GradleAndroidModel
-import com.android.tools.idea.gradle.project.sync.GradleSyncInvoker
 import com.android.tools.idea.gradle.variant.view.BuildVariantUpdater
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
@@ -15,20 +14,22 @@ class SelectBuildVariantMatrixAction : AnAction() {
         val updater = BuildVariantUpdater.getInstance(project)
         val moduleManager = ModuleManager.getInstance(project)
 
-        val moduleNameMap: Map<String, Module> = moduleManager.modules.map {
-            Pair<String, Module>(it.name, it)
-        }.toMap()
-
-        println("Module name map has these names: " + moduleNameMap.keys.joinToString(", "))
-        println("Module name map has ${moduleNameMap.keys.size} elems")
-
         val androidModules = moduleManager.modules
             .map { GradleAndroidModel.get(it) }
             .filter { it?.moduleName != null }
             .map { it!! }
             .distinct()
 
-        println("androidModules has ${androidModules.size} elems")
+        val reverseMap = mutableMapOf<GradleAndroidModel, MutableList<Module>>()
+        for (module in moduleManager.modules) {
+            val gradleModule = GradleAndroidModel.get(module) ?: continue
+            val list = reverseMap[gradleModule] ?: mutableListOf<Module>().also { reverseMap[gradleModule] = it }
+            list.add(module)
+        }
+
+        for ((key, value) in reverseMap) {
+            println("GradleModule ${key.moduleName} maps to: [${value.joinToString()}]")
+        }
 
         val dimensions = AndroidModuleHelper.createDimensionTable(androidModules, moduleManager.modules)
 
@@ -36,10 +37,15 @@ class SelectBuildVariantMatrixAction : AnAction() {
         if (dialog.showAndGet()) {
             // OK selected => Post variant selection back to Android Studio
             for (andModule in androidModules) {
-                val variant = dimensions.getSelectedVariantFor(andModule.moduleName)
-                val stdModule = moduleNameMap[andModule.moduleName] ?: continue
-                println("Found module ${stdModule.name}. Updating to variant $variant")
-                if (variant != null) updater.updateSelectedBuildVariant(stdModule, variant)
+                reverseMap[andModule]?.let { stdModuleList ->
+                    // There are 4 Android modules per module. Non-postfixed, and postfixed with
+                    // "unitTest", "androidTest" and "main". The non-postfixed is the one we want
+                    stdModuleList.sortedBy { it.name.length }.firstOrNull()?.let { stdModule ->
+                        val variant = dimensions.getSelectedVariantFor(andModule.moduleName)
+                        println("Found module ${stdModule.name} . Updating to variant $variant")
+                        if (variant != null) updater.updateSelectedBuildVariant(stdModule, variant)
+                    }
+                }
             }
         }
     }
