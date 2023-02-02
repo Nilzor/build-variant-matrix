@@ -12,21 +12,19 @@ plugins {
 }
 
 group 'com.nilsenlabs.flavormatrix'
-version '1.0.104'
+version '1.1.0'
 
 
 // Any developer must change this to his/her installation folder
 // of Android Studio of the targetIdeVersion for which to build for
-//def localStudioPath = 'C:/Programfiler/android/Android Studio'
-//def localStudioPath = 'D:/coding/android-studio-2021.2.1.13'
-def localStudioPath = 'C:/coding/android-studio-2022.1.1.19'
-
 // When updating, update 4 source JAR dependencies manually to get
 // the dev environment class resolution correctly:
 // Project Settings > Modules
 //  plugins\properties\lib\platform-images.jar
 //  plugin\sproperties\lib\properties.jar
 //  plugins\smali\lib\smali.jar
+def localStudioPath = 'C:/coding/android-studio-2022.1.1.19'
+//def localStudioPath = 'C:/Programfiler/android/Android Studio'
 
 // Below: Electric Eel patch 1 . ALWAYS UPDATE PLUGIN.XML AS WELL
 def targetIdeVersion = "221.6008.13"

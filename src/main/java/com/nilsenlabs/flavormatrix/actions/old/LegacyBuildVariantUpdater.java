@@ -135,7 +135,7 @@ public class LegacyBuildVariantUpdater {
 
             };
             if (GradleSyncState.getInstance(project).isSyncNeeded().equals(ThreeState.YES)) {
-                requestGradleSync(project, module, invokeVariantSelectionChangeListeners);
+                //requestGradleSync(project, module, invokeVariantSelectionChangeListeners);
                 return true;
             } else {
                 if (variantsExpectedAfterSwitch != null) {
@@ -148,7 +148,7 @@ public class LegacyBuildVariantUpdater {
                 }
 
                 AndroidGradleProjectResolver.saveCurrentlySyncedVariantsForReuse(project);
-                requestGradleSync(project, module, invokeVariantSelectionChangeListeners);
+                //requestGradleSync(project, module, invokeVariantSelectionChangeListeners);
                 return true;
             }
         }
@@ -236,6 +236,16 @@ public class LegacyBuildVariantUpdater {
 
         Request request = new Request(Trigger.TRIGGER_VARIANT_SELECTION_CHANGED_BY_USER);
         GradleSyncInvoker.getInstance().requestProjectSync(project, request, getSyncListener(variantSelectionChangeListeners));
+    }
+
+    public static void requestGradleSync(@NotNull Project project) {
+        Request request = new Request(Trigger.TRIGGER_VARIANT_SELECTION_CHANGED_BY_USER);
+        GradleSyncInvoker.getInstance().requestProjectSync(project, request, getSyncListener(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        }) );
     }
 
     private static void setupCachedVariant(@NotNull Project project, @NotNull DataNode<ProjectData> variantData, @NotNull Runnable variantSelectionChangeListeners) {

@@ -30,6 +30,7 @@ class SelectBuildVariantMatrixAction : AnAction() {
                     legacyUpdater.updateSelectedBuildVariant(project, andModule.moduleName, vari)
                 }
             }
+            LegacyBuildVariantUpdater.requestGradleSync(project)
         }
     }
 }
