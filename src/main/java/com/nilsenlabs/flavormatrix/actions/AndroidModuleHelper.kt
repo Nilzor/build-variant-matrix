@@ -2,7 +2,6 @@ package com.nilsenlabs.flavormatrix.actions
 
 import com.android.tools.idea.gradle.project.model.GradleAndroidModel
 import com.intellij.openapi.module.Module
-import kotlin.streams.toList
 
 object AndroidModuleHelper {
     fun createDimensionTable(androidModules: List<GradleAndroidModel>, modules: Array<Module> ): DimensionList {
@@ -30,7 +29,7 @@ object AndroidModuleHelper {
     private fun createMergedDimensionList(modules: List<GradleAndroidModel>): DimensionList {
         val dimensionList = DimensionList()
         for (module in modules) {
-            val flavors = module.androidProject.productFlavors.toList()
+            val flavors = module.androidProject.multiVariantData?.productFlavors?.toList().orEmpty()
             for (flavorObj in flavors) {
                 val flavor = flavorObj.productFlavor
                 flavor.dimension?.let { dim ->
