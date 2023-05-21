@@ -1,8 +1,8 @@
 package com.nilsenlabs.flavormatrix
 
 import com.nilsenlabs.flavormatrix.actions.DimensionList
+import org.junit.Assert.assertEquals
 import org.junit.Test
-import kotlin.test.assertEquals
 
 class DimensionListTest {
     @Test
