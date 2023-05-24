@@ -14,6 +14,9 @@ plugins {
 group 'com.nilsenlabs.flavormatrix'
 version '1.2.0'
 
+Properties properties = new Properties()
+properties.load(project.rootProject.file("local.properties").newDataInputStream())
+
 // Any developer must change this to his/her installation folder
 // of Android Studio of the targetIdeVersion for which to build for
 // When updating, delete all source jar references manually from Project Structure > Libraries that reference
@@ -21,12 +24,16 @@ version '1.2.0'
 //  plugins\properties\lib\platform-images.jar
 //  plugins\properties\lib\properties.jar
 //  plugins\smali\lib\smali.jar
-def localStudioPath = 'd:/coding/android-studio-2022.3.1.14-windows'
+def defaultLocalStudioPath = 'd:/coding/android-studio-2022.3.1.14-windows'
+
+// Specify the path in your local.properties file as
+// localStudioPath=your/path/to/androidstudio
+// Also see https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html#intellij-extension-localpath
+def localStudioPath = properties.get("localStudioPath") ?: defaultLocalStudioPath
 
 // Below: From Giraffe Beta 1
 // Also tested on Hedgehog Canary 4, 231.7864.76
 def targetIdeVersion = "223.8836.35"
-
 
 intellij {
     // Uncomment the two lines below and remove "localPath" if you want to build for a different version than the one locally installed
