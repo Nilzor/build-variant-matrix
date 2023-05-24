@@ -12,8 +12,7 @@ plugins {
 }
 
 group 'com.nilsenlabs.flavormatrix'
-version '1.1.0'
-
+version '1.2.0'
 
 // Any developer must change this to his/her installation folder
 // of Android Studio of the targetIdeVersion for which to build for
@@ -22,11 +21,11 @@ version '1.1.0'
 //  plugins\properties\lib\platform-images.jar
 //  plugins\properties\lib\properties.jar
 //  plugins\smali\lib\smali.jar
-def localStudioPath = 'C:/coding/android-studio-2022.1.1.19'
-//def localStudioPath = 'C:/Programfiler/android/Android Studio'
+def localStudioPath = 'd:/coding/android-studio-2022.3.1.14-windows'
 
-// Below: Electric Eel patch 1 . ALWAYS UPDATE PLUGIN.XML AS WELL
-def targetIdeVersion = "221.6008.13"
+// Below: From Giraffe Beta 1
+// Also tested on Hedgehog Canary 4, 231.7864.76
+def targetIdeVersion = "223.8836.35"
 
 
 intellij {
@@ -45,6 +44,7 @@ intellij {
 patchPluginXml {
     changeNotes = """
     <ul>
+      <li>1.2.0 Support for Android Studio Giraffe and Hedgehog</li>
       <li>1.1.0 Support for Android Studio Electric Eel</li>
       <li>1.0.0 Support for Android Studio Chipmunk (RC2+)</li>
       <li>0.7.0 Support for Android studio Arctic Fox 2020.3.1</li>
@@ -73,7 +73,3 @@ dependencies {
     testImplementation group: 'junit', name: 'junit', version: '4.12'
     testImplementation "org.mockito:mockito-core:2.+"
 }
-
-//publishPlugin {
-//   token project.properties['jetbrains.publish.token']
-//}

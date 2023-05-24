@@ -30,8 +30,17 @@ object AndroidModuleHelper {
     private fun createMergedDimensionList(modules: List<GradleAndroidModel>): DimensionList {
         val dimensionList = DimensionList()
         for (module in modules) {
-            val flavors = module.androidProject.productFlavors.toList()
+            val flavors = module.androidProject.multiVariantData?.productFlavors?.toList() ?: continue
             for (flavorObj in flavors) {
+                // println("Processing flavorName: ${flavorObj.productFlavor.name}: ${flavorObj.productFlavor.dimension}")
+                /*
+                    Expecting a log like like this for my test project:
+                    Processing flavorName: qa: environment
+                    Processing flavorName: prod: environment
+                    Processing flavorName: dev: environment
+                    Processing flavorName: paid: paymentmodel
+                    Processing flavorName: free: paymentmodel
+                 */
                 val flavor = flavorObj.productFlavor
                 flavor.dimension?.let { dim ->
                     val flavorsForDimension = dimensionList.getOrCreateDimension(dim)
