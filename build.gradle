@@ -8,30 +8,25 @@ buildscript {
 
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.8.0'
-    id 'org.jetbrains.intellij' version '1.0'
+    id 'org.jetbrains.intellij' version '1.13.3'
 }
 
 group 'com.nilsenlabs.flavormatrix'
-version '1.1.0'
-
+version '1.2.0'
 
 // Any developer must change this to his/her installation folder
 // of Android Studio of the targetIdeVersion for which to build for
-// When updating, update 4 source JAR dependencies manually to get
-// the dev environment class resolution correctly:
-// Project Settings > Modules
+// When updating, delete all source jar references manually from Project Structure > Libraries that reference
+// the old version of Android Studio. E.g::
 //  plugins\properties\lib\platform-images.jar
-//  plugin\sproperties\lib\properties.jar
+//  plugins\properties\lib\properties.jar
 //  plugins\smali\lib\smali.jar
-def localStudioPath = 'C:/coding/android-studio-2022.1.1.19'
-//def localStudioPath = 'C:/Programfiler/android/Android Studio'
+def localStudioPath = 'd:/coding/android-studio-2022.3.1.14-windows'
 
-// Below: Electric Eel patch 1 . ALWAYS UPDATE PLUGIN.XML AS WELL
-def targetIdeVersion = "221.6008.13"
+// Below: From Giraffe Beta 1
+// Also tested on Hedgehog Canary 4, 231.7864.76
+def targetIdeVersion = "223.8836.35"
 
-// Build #IC-213.6777.52, built on January 28, 2022
-
-// The other machine: 'c:/Program Files/Android/Android Studio 4.1 RC3'
 
 intellij {
     // Uncomment the two lines below and remove "localPath" if you want to build for a different version than the one locally installed
@@ -49,6 +44,7 @@ intellij {
 patchPluginXml {
     changeNotes = """
     <ul>
+      <li>1.2.0 Support for Android Studio Giraffe and Hedgehog</li>
       <li>1.1.0 Support for Android Studio Electric Eel</li>
       <li>1.0.0 Support for Android Studio Chipmunk (RC2+)</li>
       <li>0.7.0 Support for Android studio Arctic Fox 2020.3.1</li>
@@ -58,7 +54,7 @@ patchPluginXml {
 }
 
 runIde {
-    def dirObj = project.getLayout().getProjectDirectory().dir(localStudioPath)
+    def dirObj = project.getLayout().getProjectDirectory().dir(localStudioPath).asFile
     ideDir.set(dirObj)
 }
 
@@ -75,9 +71,5 @@ repositories {
 
 dependencies {
     testImplementation group: 'junit', name: 'junit', version: '4.12'
-    testCompile "org.mockito:mockito-core:2.+"
+    testImplementation "org.mockito:mockito-core:2.+"
 }
-
-//publishPlugin {
-//   token project.properties['jetbrains.publish.token']
-//}
