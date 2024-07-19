@@ -15,7 +15,6 @@ import com.android.tools.idea.gradle.project.sync.GradleSyncInvoker.Request;
 import com.android.tools.idea.gradle.project.sync.GradleSyncStateHolder;
 import com.android.tools.idea.gradle.project.sync.idea.AndroidGradleProjectResolver;
 import com.android.tools.idea.gradle.project.sync.idea.GradleSyncExecutor;
-import com.android.tools.idea.gradle.project.sync.idea.KotlinPropertiesKt;
 import com.android.tools.idea.gradle.project.sync.idea.VariantAndAbi;
 import com.android.tools.idea.gradle.project.sync.idea.VariantSwitcher;
 import com.android.tools.idea.projectsystem.gradle.GradleProjectPath;
@@ -42,7 +41,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-
 import org.jetbrains.android.facet.AndroidFacet;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -141,7 +139,6 @@ public class LegacyBuildVariantUpdater {
                 if (variantsExpectedAfterSwitch != null) {
                     DataNode<ProjectData> variantProjectDataNode = VariantSwitcher.findAndSetupSelectedCachedVariantData(data, variantsExpectedAfterSwitch);
                     if (variantProjectDataNode != null) {
-                        KotlinPropertiesKt.restoreKotlinUserDataFromDataNodes(variantProjectDataNode);
                         setupCachedVariant(project, variantProjectDataNode, invokeVariantSelectionChangeListeners);
                         return true;
                     }
