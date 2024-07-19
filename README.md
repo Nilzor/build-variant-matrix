@@ -33,7 +33,7 @@ Go to File - Settings - Plugins, Search for plugin "Build Variant Matrix Selecto
 
 ![image](https://user-images.githubusercontent.com/990654/111862442-aa75bb80-8955-11eb-8e75-35352186242c.png)
 
-Optionally [download](https://plugins.jetbrains.com/plugin/15632-build-variant-matrix-selector) and install from disk
+Optionally download and install from disk from either [Jetbrains](https://plugins.jetbrains.com/plugin/15632-build-variant-matrix-selector) or [Gitlab](https://github.com/Nilzor/build-variant-matrix/releases)
 
 ## Usage
 
