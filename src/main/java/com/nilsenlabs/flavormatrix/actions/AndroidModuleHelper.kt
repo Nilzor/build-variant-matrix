@@ -59,7 +59,9 @@ object AndroidModuleHelper {
             System.out.println( "Selected variant for ${module.name}: ${amod?.selectedVariant?.displayName} -- ${amod?.selectedVariant?.buildType} -- ${amod?.selectedVariant?.productFlavors?.joinToString("*")}")
             buildTypes.addAll(amod?.buildTypeNames ?: emptyList())
         }
-        return buildTypes.stream().toList()
+        val list = buildTypes.stream().toList()
+        System.out.println("List returned: $list ")
+        return list
     }
 }
 
@@ -67,7 +69,8 @@ object AndroidModuleHelper {
 val Module.variantNames: Collection<String?>
     // Note: NDK part is untested
     get() = // NdkModuleModel.get(this)?.ndkModel?.allVariantAbis?.stream()?.map { it.displayName }?.toList() ?:
-        GradleAndroidModel.get(this)?.variantNames ?: emptyList()
+        // val variantList = module.androidProject.basicVariants.stream().toList()
+        GradleAndroidModel.get(this)?.filteredVariantNames ?: emptyList()
 
 val Module.variantItems: ModuleBuildVariant
     get() = ModuleBuildVariant(name, variantNames.asSequence().filterNotNull().sorted().toList())
