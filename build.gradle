@@ -31,7 +31,7 @@ def defaultLocalStudioPath = 'd:/coding/android-studio-meerkat'
 // Also see https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html#intellij-extension-localpath
 def localStudioPath = properties.get("localStudioPath") ?: defaultLocalStudioPath
 
-// Below: Meerkat 2024.3.1 Canary 3
+// Below: Meerkat 2024.3.1 Canary 3. Remember to update plugin.xml
 def targetIdeVersion = "243.21565.193"
 
 intellij {
