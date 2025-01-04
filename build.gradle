@@ -12,7 +12,7 @@ plugins {
 }
 
 group 'com.nilsenlabs.flavormatrix'
-version '1.4.0-alpha2'
+version '1.4.0'
 
 Properties properties = new Properties()
 properties.load(project.rootProject.file("local.properties").newDataInputStream())
