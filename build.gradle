@@ -7,12 +7,12 @@ buildscript {
 }
 
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.8.0'
+    id 'org.jetbrains.kotlin.jvm' version '2.0.0'
     id 'org.jetbrains.intellij' version '1.13.3'
 }
 
 group 'com.nilsenlabs.flavormatrix'
-version '1.3.0'
+version '1.4.0'
 
 Properties properties = new Properties()
 properties.load(project.rootProject.file("local.properties").newDataInputStream())
@@ -24,15 +24,15 @@ properties.load(project.rootProject.file("local.properties").newDataInputStream(
 //  plugins\properties\lib\platform-images.jar
 //  plugins\properties\lib\properties.jar
 //  plugins\smali\lib\smali.jar
-def defaultLocalStudioPath = 'd:/coding/android-studio-ladybug-canary1'
+def defaultLocalStudioPath = 'd:/coding/android-studio-meerkat'
 
 // Specify the path in your local.properties file as
 // localStudioPath=your/path/to/androidstudio
 // Also see https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html#intellij-extension-localpath
 def localStudioPath = properties.get("localStudioPath") ?: defaultLocalStudioPath
 
-// Below: Ladybug 2024.1.3 Canary 1
-def targetIdeVersion = "241.18034.62"
+// Below: Meerkat 2024.3.1 Canary 3. Remember to update plugin.xml
+def targetIdeVersion = "243.21565.193"
 
 intellij {
     // Uncomment the two lines below and remove "localPath" if you want to build for a different version than the one locally installed
@@ -50,6 +50,7 @@ intellij {
 patchPluginXml {
     changeNotes = """
     <ul>
+      <li>1.4.0 Support for Android Studio Meerkat (from Canary 3)</li>
       <li>1.3.0 Support for Android Studio Ladybug</li>
       <li>1.2.0 Support for Android Studio Giraffe and Hedgehog</li>
       <li>1.1.0 Support for Android Studio Electric Eel</li>

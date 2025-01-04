@@ -1,0 +1,10 @@
+## Issues with Java compile version
+
+when attempting `jar` execution and you get "Unsupported class file major version 65":
+
+- Build & Execution
+  - Build Tools
+    - Gradle
+      - Gradle Jvm -> temurin 17
+
+Might have to switch to 21 when running locally against IDE

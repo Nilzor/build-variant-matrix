@@ -1,11 +1,12 @@
 package com.nilsenlabs.flavormatrix.actions
 
 import com.android.tools.idea.gradle.project.model.GradleAndroidModel
+import com.android.tools.idea.projectsystem.gradle.getHolderModule
 import com.intellij.openapi.module.Module
 import kotlin.streams.toList
 
 object AndroidModuleHelper {
-    fun createDimensionTable(androidModules: List<GradleAndroidModel>, modules: Array<Module> ): DimensionList {
+    fun createDimensionTable(androidModules: List<GradleAndroidModel>, modules: Array<Module>): DimensionList {
         val dimensions = createMergedDimensionList(androidModules)
         addBuildTypes(modules, dimensions)
         dimensions.createOrderedDimensionMaps(androidModules)
@@ -32,7 +33,7 @@ object AndroidModuleHelper {
         for (module in modules) {
             val flavors = module.androidProject.multiVariantData?.productFlavors?.toList() ?: continue
             for (flavorObj in flavors) {
-                // println("Processing flavorName: ${flavorObj.productFlavor.name}: ${flavorObj.productFlavor.dimension}")
+                // getLog.info("Processing flavorName: ${flavorObj.productFlavor.name}: ${flavorObj.productFlavor.dimension}")
                 /*
                     Expecting a log like like this for my test project:
                     Processing flavorName: qa: environment
@@ -53,14 +54,12 @@ object AndroidModuleHelper {
 
     fun getBuildTypes(modules: Array<Module>): List<String> {
         val buildTypes = mutableSetOf<String>()
-        for(module in modules) {
-
+        for (module in modules) {
             val amod = GradleAndroidModel.get(module)
-            System.out.println( "Selected variant for ${module.name}: ${amod?.selectedVariant?.displayName} -- ${amod?.selectedVariant?.buildType} -- ${amod?.selectedVariant?.productFlavors?.joinToString("*")}")
             buildTypes.addAll(amod?.buildTypeNames ?: emptyList())
         }
         val list = buildTypes.stream().toList()
-        System.out.println("List returned: $list ")
+        getLog().info("Build type list resolved after iterating ${modules.size} modules: $list")
         return list
     }
 }
