@@ -1,9 +1,7 @@
 package com.nilsenlabs.flavormatrix.actions
 
 import com.android.tools.idea.gradle.project.model.GradleAndroidModel
-import com.android.tools.idea.projectsystem.gradle.getHolderModule
 import com.intellij.openapi.module.Module
-import kotlin.streams.toList
 
 object AndroidModuleHelper {
     fun createDimensionTable(androidModules: List<GradleAndroidModel>, modules: Array<Module>): DimensionList {
