@@ -1,10 +1,8 @@
-## Issues with Java compile version
+## Bulding
 
-when attempting `jar` execution and you get "Unsupported class file major version 65":
+run `gradlew buildPlugin`
+the `jar` task does not build full jar anymore
 
-- Build & Execution
-  - Build Tools
-    - Gradle
-      - Gradle Jvm -> temurin 17
+Documentationn:
 
-Might have to switch to 21 when running locally against IDE
+https://plugins.jetbrains.com/docs/intellij/android-studio.html#pluginxml
