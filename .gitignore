@@ -3,3 +3,30 @@ build
 .gradle
 out
 local.properties
+.intellijPlatform
+
+# Development and testing artifacts
+*.log
+log
+plugin.log
+bash_history
+
+# Android Studio cache and sandbox
+~/.cache/Google/AndroidStudio*/log/
+~/.cache/Google/AndroidStudio*/plugins/
+
+# Temporary files
+*.tmp
+*.temp
+
+# IDE-specific files
+*.swp
+*.swo
+*~
+
+# MacOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini

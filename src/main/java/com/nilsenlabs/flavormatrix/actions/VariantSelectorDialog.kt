@@ -1,6 +1,5 @@
 package com.nilsenlabs.flavormatrix.actions
 
-import com.android.tools.idea.gradle.project.model.GradleAndroidModel
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.ui.DialogWrapper
 import com.intellij.openapi.ui.VerticalFlowLayout
@@ -16,14 +15,15 @@ import javax.swing.border.LineBorder
 
 class VariantSelectorDialog(
         private val dimensions: DimensionList,
-        private val androidModules: List<GradleAndroidModel>,
+        private val androidModules: List<Any?>,
         project: Project
 ) : DialogWrapper(project) {
     init {
         this.title = "Select variant"
-        if (!SystemInfo.isMac) {
-            setButtonsAlignment(SwingConstants.CENTER)
-        }
+        // Note: setButtonsAlignment() is deprecated and not essential for functionality
+        // if (!SystemInfo.isMac) {
+        //     setButtonsAlignment(SwingConstants.CENTER)
+        // }
         init()
     }
 
@@ -33,12 +33,13 @@ class VariantSelectorDialog(
 
     /**
      * Create the flavor-dimension selection grid
+     * Enhanced for better display of complex dimension configurations
      */
     private fun createLayouts() : JComponent {
         val container = JPanel(
             VerticalFlowLayout(VerticalFlowLayout.TOP or VerticalFlowLayout.LEFT, true, false)
         )
-        container.maximumSize = java.awt.Dimension(500, 300)
+        container.maximumSize = java.awt.Dimension(600, 400) // Slightly larger for complex configs
 
         val selectorContainer = JPanel(GridBagLayout())
         container.add(selectorContainer)
@@ -54,11 +55,14 @@ class VariantSelectorDialog(
                 anchor = WEST
             }
 
-            val dimTitle = JTextField(dimension.dimensionName)
+            // Enhanced dimension title with flavor count for clarity
+            val dimensionTitle = "${dimension.dimensionName} (${dimension.flavors.size})"
+            val dimTitle = JTextField(dimensionTitle)
             dimTitle.font = Font(dimTitle.font.name, Font.BOLD, dimTitle.font.size)
             dimTitle.isEditable = false
             dimTitle.background = Color(0,0,0,0)
             dimTitle.border = LineBorder(Color.BLACK,0)
+            dimTitle.toolTipText = "Dimension: ${dimension.dimensionName} with ${dimension.flavors.size} flavors"
             selectorContainer.add(dimTitle, constForLabel)
 
             val rbGroup = ButtonGroup()
@@ -74,6 +78,7 @@ class VariantSelectorDialog(
 
                 val flavorView = JRadioButton(flavor.title)
                 flavorView.isSelected = flavor.isSelected
+                flavorView.toolTipText = "Select ${flavor.title} for ${dimension.dimensionName} dimension"
                 selectorContainer.add(flavorView, constForButton)
                 rbGroup.add(flavorView)
                 flavorView.addActionListener {
@@ -90,14 +95,41 @@ class VariantSelectorDialog(
     }
 
     private fun populateVariantResult(variantResultList: JTextArea): Boolean {
-        var text = ""
+        var text = "Selected Variants:\n"
+        text += "================\n"
         var anyNull = false
+        var completeVariants = 0
+        
         for (module in androidModules) {
-            val variantName = dimensions.getSelectedVariantFor(module.moduleName)
-            if (variantName == null) anyNull = true
-            text += "${module.moduleName}: $variantName\n"
+            try {
+                val moduleName = try {
+                    ReflectionAndroidModel.getModuleName(module) ?: "Unknown Module"
+                } catch (error: Throwable) {
+                    "Unknown Module"
+                }
+                
+                val variantName = dimensions.getSelectedVariantFor(moduleName)
+                if (variantName == null) {
+                    anyNull = true
+                    text += "$moduleName: [INCOMPLETE - select all dimensions]\n"
+                } else {
+                    completeVariants++
+                    text += "$moduleName: $variantName\n"
+                }
+            } catch (e: Exception) {
+                anyNull = true
+                text += "Error accessing module: ${e.message}\n"
+            }
         }
+        
+        text += "\nStatus: $completeVariants/${androidModules.size} modules ready"
+        if (anyNull) {
+            text += "\n\nPlease select a flavor for each dimension to enable OK button."
+        }
+        
         variantResultList.text = text
+        variantResultList.isEditable = false
+        variantResultList.caretPosition = 0 // Scroll to top
         return !anyNull
     }
 
