@@ -68,7 +68,7 @@ Thants to PandoraMedia's [variant-helper-plugin](https://github.com/PandoraMedia
 
 ---
 
-## Version 1.4.3 Updates - Android Studio Compatibility & Enhancements
+## Version 1.5.0 Updates - Android Studio Compatibility & Enhancements
 
 ### Recent Changes & Challenges
 
@@ -140,7 +140,7 @@ During development, you'll need to frequently reload the plugin and restart Andr
    ```
 
 2. **Install Plugin**: 
-   - Copy `build/distributions/build-variant-matrix-1.4.3.zip` to Android Studio
+   - Copy `build/distributions/build-variant-matrix-1.5.0.zip` to Android Studio
    - Or use: File → Settings → Plugins → Install from Disk
 
 3. **Restart Android Studio** (required for plugin changes)
@@ -169,8 +169,8 @@ During development, you'll need to frequently reload the plugin and restart Andr
 #### **Build Artifacts**
 
 After successful build:
-- **Plugin ZIP**: `build/distributions/build-variant-matrix-1.4.3.zip`
-- **Plugin JAR**: `build/libs/build-variant-matrix-1.4.3.jar`
+- **Plugin ZIP**: `build/distributions/build-variant-matrix-1.5.0.zip`
+- **Plugin JAR**: `build/libs/build-variant-matrix-1.5.0.jar`
 - **Sandbox**: `build/idea-sandbox/` (for testing)
 
 The plugin has been thoroughly tested with complex Android projects and modern Android Studio versions, ensuring robust compatibility across different development environments.
