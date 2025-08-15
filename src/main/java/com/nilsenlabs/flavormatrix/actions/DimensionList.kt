@@ -86,7 +86,7 @@ class DimensionList {
                 }
             }.joinToString("")
 
-            println("Constructed variant for module '$moduleName': $variantString (from flavors: ${selectedFlavors.joinToString(", ")})")
+            getLog().info("Constructed variant for module '$moduleName': $variantString (from flavors: ${selectedFlavors.joinToString(", ")})")
             return variantString
 
         } catch (ex: NoSuchElementException) {
