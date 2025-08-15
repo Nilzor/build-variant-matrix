@@ -10,11 +10,11 @@ class MultiDimensionTest {
     fun testComplexVariantNameParsing() {
         // Test parsing of complex variant names like your android-userland project might have
         val testCases = mapOf(
-            "qaArm64Debug" to listOf("qa", "arm64"),
-            "prodFreeArm32Release" to listOf("prod", "free", "arm32"),
-            "devPaidArm64Debug" to listOf("dev", "paid", "arm64"),
-            "qaDebug" to listOf("qa"),
-            "simpleRelease" to listOf("simple")
+            "qaArm64Debug" to listOf("qa", "arm64", "debug"),
+            "prodFreeArm32Release" to listOf("prod", "free", "arm32", "release"),
+            "devPaidArm64Debug" to listOf("dev", "paid", "arm64", "debug"),
+            "qaDebug" to listOf("qa", "debug"),
+            "simpleRelease" to listOf("simple", "release")
         )
 
         testCases.forEach { (variantName, expectedFlavors) ->

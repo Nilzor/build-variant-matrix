@@ -1,27 +1,18 @@
 package com.nilsenlabs.flavormatrix.actions
 
-import kotlin.streams.toList
 
 class DimensionList {
     companion object {
         val BUILD_TYPE_NAME = "buildType"
 
+        /** Splits the flavor-buildtype-string into individual parts. e.g. qaArm64Debug -> [qa, arm64, debug] */
         fun flavorsFromVariant(variantName: String): List<String> {
             // Enhanced parsing for complex variant names like "qaArm64Debug" or "prodFreeArm32Release"
             val flavors = variantName
                 .split(Regex("(?=[A-Z])"))
                 .filter { it.isNotEmpty() }
                 .map { it.lowercase() }
-
-            // Remove build type if it's at the end (debug, release, etc.)
-            val knownBuildTypes = setOf("debug", "release")
-            val filteredFlavors = if (flavors.isNotEmpty() && knownBuildTypes.contains(flavors.last())) {
-                flavors.dropLast(1)
-            } else {
-                flavors
-            }
-
-            return filteredFlavors
+            return flavors
         }
     }
 
