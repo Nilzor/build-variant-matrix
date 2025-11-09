@@ -11,7 +11,7 @@ plugins {
 }
 
 group 'com.nilsenlabs.flavormatrix'
-version '1.5.1'
+version '1.6.0'
 
 Properties properties = new Properties()
 if (project.rootProject.file("local.properties").exists()) {
@@ -25,20 +25,20 @@ if (project.rootProject.file("local.properties").exists()) {
 //  plugins\properties\lib\platform-images.jar
 //  plugins\properties\lib\properties.jar
 //  plugins\smali\lib\smali.jar
-def defaultLocalStudioPath = '/home/sam/android-studio'
+def defaultLocalStudioPath = 'D:\\coding\\android-studio-meerkat'
 
 // Specify the path in your local.properties file as
 // localStudioPath=your/path/to/androidstudio
 // Also see https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html#intellij-extension-localpath
 def localStudioPath = properties.get("localStudioPath") ?: defaultLocalStudioPath
 
-// Below: Narwhal Feature Drop 2025.1.2 - Current version for compatibility
-def targetIdeVersion = "251.26094.121"
-
+// Below: Otter 2025.2.1 - Current version for compatibility
+def targetIdeVersion = "252.25557.131"
 
 patchPluginXml {
     changeNotes = """
     <ul>
+      <li>1.6.0 Support for Android Studio Otter (2025.2.1)</li>
       <li>1.5.1 Support for Android Studio Narwhal (2025.1.2)</li>
       <li>1.4.2 Publishing technicalities - no functionality change</li>
       <li>1.4.0 Support for Android Studio Meerkat (from Canary 9)</li>
