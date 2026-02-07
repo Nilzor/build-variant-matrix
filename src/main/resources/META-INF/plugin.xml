@@ -17,7 +17,7 @@
     <id>com.nilsenlabs.flavormatrix</id>
     <name>Build Variant Matrix Selector</name>
     <vendor url="https://github.com/Nilzor/build-variant-matrix">Frode Nilsen</vendor>
-    <idea-version since-build="252.25557.131" until-build="*" />
+    <idea-version since-build="253.29346.138" until-build="*" />
     <description><![CDATA[<p>Select variant by selecting flavors in a matrix instead of through the drop down lists provdided by IntelliJ/Android Studio
 in the "Build Variants" view. In addition this plugin selects variants for all modules at the same time, even
 when there are multiple leaf modules. This results in a very fast and intuitive way of switching variants
