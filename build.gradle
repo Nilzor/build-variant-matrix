@@ -11,7 +11,19 @@ plugins {
 }
 
 group 'com.nilsenlabs.flavormatrix'
-version '1.7.0'
+version '1.7.1'
+
+def javaVersion = 21
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(javaVersion)
+    }
+}
+
+kotlin {
+    jvmToolchain(javaVersion)
+}
 
 Properties properties = new Properties()
 if (project.rootProject.file("local.properties").exists()) {
@@ -32,13 +44,13 @@ def defaultLocalStudioPath = 'D:\\coding\\android-studio-meerkat'
 // Also see https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html#intellij-extension-localpath
 def localStudioPath = properties.get("localStudioPath") ?: defaultLocalStudioPath
 
-// Below: Android Studio Panda 2 | 2025.3.2 Canary 3 - Current version for compatibility
-def targetIdeVersion = "252.25557.131"
+// Below: Android Studio Panda 1 | 2025.3.1 - Current version for compatibility
+def targetIdeVersion = "253.29346.138"
 
 patchPluginXml {
     changeNotes = """
     <ul>
-      <li>1.7.0 Support for Android Studio Panda (2025.3.1 RC 1)</li>
+      <li>1.7.1 Support for Android Studio Panda (2025.3.1 RC 1)</li>
       <li>1.6.0 Support for Android Studio Otter (2025.2.1)</li>
       <li>1.5.1 Support for Android Studio Narwhal (2025.1.2)</li>
       <li>1.4.2 Publishing technicalities - no functionality change</li>
