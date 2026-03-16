@@ -2,7 +2,6 @@ package com.nilsenlabs.flavormatrix.actions
 
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.ui.DialogWrapper
-import com.intellij.openapi.ui.VerticalFlowLayout
 import com.intellij.openapi.util.SystemInfo
 import java.awt.Color
 import java.awt.Font
@@ -36,12 +35,11 @@ class VariantSelectorDialog(
      * Enhanced for better display of complex dimension configurations
      */
     private fun createLayouts() : JComponent {
-        val container = JPanel(
-            VerticalFlowLayout(VerticalFlowLayout.TOP or VerticalFlowLayout.LEFT, true, false)
-        )
-        container.maximumSize = java.awt.Dimension(600, 400) // Slightly larger for complex configs
+        val container = JPanel()
+        container.layout = BoxLayout(container, BoxLayout.Y_AXIS)
 
         val selectorContainer = JPanel(GridBagLayout())
+        selectorContainer.alignmentX = JComponent.LEFT_ALIGNMENT
         container.add(selectorContainer)
         val moduleListTextArea = JTextArea()
 
@@ -88,9 +86,13 @@ class VariantSelectorDialog(
         }
         val allFlavorsSelected = populateVariantResult(moduleListTextArea)
         enableButtons(allFlavorsSelected)
-        container.add(moduleListTextArea)
 
-        selectorContainer.doLayout()
+        val scrollPane = JScrollPane(moduleListTextArea)
+        scrollPane.alignmentX = JComponent.LEFT_ALIGNMENT
+        scrollPane.preferredSize = java.awt.Dimension(600, 400)
+        container.add(Box.createVerticalStrut(8))
+        container.add(scrollPane)
+
         return container
     }
 
