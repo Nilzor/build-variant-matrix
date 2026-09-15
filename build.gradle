@@ -11,9 +11,9 @@ plugins {
 }
 
 group 'com.nilsenlabs.flavormatrix'
-version '1.8.0'
+version '1.9.0'
 
-def javaVersion = 21
+def javaVersion = 25
 
 java {
     toolchain {
@@ -37,19 +37,20 @@ if (project.rootProject.file("local.properties").exists()) {
 //  plugins\properties\lib\platform-images.jar
 //  plugins\properties\lib\properties.jar
 //  plugins\smali\lib\smali.jar
-def defaultLocalStudioPath = 'D:\\coding\\android-studio-meerkat'
+def defaultLocalStudioPath = 'D:\\coding\\android-studio-rabbit-can1'
 
 // Specify the path in your local.properties file as
 // localStudioPath=your/path/to/androidstudio
 // Also see https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html#intellij-extension-localpath
 def localStudioPath = properties.get("localStudioPath") ?: defaultLocalStudioPath
 
-// Below: Android Studio Quail 1 | 2026.1.1 - Current version for compatibility
-def targetIdeVersion = "261.23567.138"
+// Below: Android Studio Rabbit 1 | 2026.2.1 - Current version for compatibility
+def targetIdeVersion = "262.9437.185"
 
 patchPluginXml {
     changeNotes = """
     <ul>
+      <li>1.9.0 Support for Android Studio Rabbit (2026.2.1)</li>
       <li>1.8.0 Support for Android Studio Quail (2026.1.1)</li>
       <li>1.7.1 Support for Android Studio Panda (2025.3.1 RC 1)</li>
       <li>1.6.0 Support for Android Studio Otter (2025.2.1)</li>
