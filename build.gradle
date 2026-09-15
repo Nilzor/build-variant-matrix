@@ -47,7 +47,10 @@ def localStudioPath = properties.get("localStudioPath") ?: defaultLocalStudioPat
 // Below: Android Studio Rabbit 1 | 2026.2.1 - Current version for compatibility
 def targetIdeVersion = "262.9437.185"
 
-patchPluginXml {
+tasks.named('patchPluginXml') {
+    def buildParts = targetIdeVersion.split('\\.')
+    sinceBuild = "${buildParts[0]}.${buildParts[1]}"
+    untilBuild = "${buildParts[0]}.*"
     changeNotes = """
     <ul>
       <li>1.9.0 Support for Android Studio Rabbit (2026.2.1)</li>
