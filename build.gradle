@@ -1,19 +1,12 @@
-buildscript {
-    repositories {
-        mavenCentral()
-        maven { url 'https://www.jetbrains.com/intellij-repository/releases' }
-    }
-}
-
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '2.3.0'
     id 'org.jetbrains.intellij.platform' version '2.2.1'
 }
 
-group 'com.nilsenlabs.flavormatrix'
-version '1.8.0'
+group = 'com.nilsenlabs.flavormatrix'
+version = '1.9.0'
 
-def javaVersion = 21
+def javaVersion = 25
 
 java {
     toolchain {
@@ -37,19 +30,23 @@ if (project.rootProject.file("local.properties").exists()) {
 //  plugins\properties\lib\platform-images.jar
 //  plugins\properties\lib\properties.jar
 //  plugins\smali\lib\smali.jar
-def defaultLocalStudioPath = 'D:\\coding\\android-studio-meerkat'
+def defaultLocalStudioPath = 'D:\\coding\\android-studio-rabbit-can1'
 
 // Specify the path in your local.properties file as
 // localStudioPath=your/path/to/androidstudio
 // Also see https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html#intellij-extension-localpath
 def localStudioPath = properties.get("localStudioPath") ?: defaultLocalStudioPath
 
-// Below: Android Studio Quail 1 | 2026.1.1 - Current version for compatibility
-def targetIdeVersion = "261.23567.138"
+// Below: Android Studio Rabbit 1 | 2026.2.1 - Current version for compatibility
+def targetIdeVersion = "262.9437.185"
 
-patchPluginXml {
+tasks.named('patchPluginXml') {
+    def buildParts = targetIdeVersion.split('\\.')
+    sinceBuild = "${buildParts[0]}.${buildParts[1]}"
+    untilBuild = "${buildParts[0]}.*"
     changeNotes = """
     <ul>
+      <li>1.9.0 Support for Android Studio Rabbit (2026.2.1)</li>
       <li>1.8.0 Support for Android Studio Quail (2026.1.1)</li>
       <li>1.7.1 Support for Android Studio Panda (2025.3.1 RC 1)</li>
       <li>1.6.0 Support for Android Studio Otter (2025.2.1)</li>
@@ -71,7 +68,7 @@ repositories {
     intellijPlatform {
         defaultRepositories()
     }
-    maven { url 'https://www.jetbrains.com/intellij-repository/releases' }
+    maven { url = uri('https://www.jetbrains.com/intellij-repository/releases') }
 }
 
 dependencies {
