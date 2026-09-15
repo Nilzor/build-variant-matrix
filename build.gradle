@@ -1,17 +1,10 @@
-buildscript {
-    repositories {
-        mavenCentral()
-        maven { url 'https://www.jetbrains.com/intellij-repository/releases' }
-    }
-}
-
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '2.3.0'
     id 'org.jetbrains.intellij.platform' version '2.2.1'
 }
 
-group 'com.nilsenlabs.flavormatrix'
-version '1.9.0'
+group = 'com.nilsenlabs.flavormatrix'
+version = '1.9.0'
 
 def javaVersion = 25
 
@@ -75,7 +68,7 @@ repositories {
     intellijPlatform {
         defaultRepositories()
     }
-    maven { url 'https://www.jetbrains.com/intellij-repository/releases' }
+    maven { url = uri('https://www.jetbrains.com/intellij-repository/releases') }
 }
 
 dependencies {
